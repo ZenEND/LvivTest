@@ -1,5 +1,5 @@
 <template>
-  <v-app light>
+  <v-app dark>
     <v-toolbar dark color="primary">
       <v-toolbar-title>
         Интернет магазин
@@ -13,7 +13,7 @@
           Home Page
         </v-btn>
         <v-btn flat to="/card">
-          <v-icon>delete</v-icon>
+          <v-icon>add_shopping_cart</v-icon>
           Shopping Card
         </v-btn>
       </v-toolbar-items>
@@ -23,37 +23,14 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer
-      app
-    >
-      <span>&copy; 2019</span>
+    <v-footer app>
+      <v-layout justify-center>
+        <span>&copy; 2019</span>
+      </v-layout>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      clipped: false,
-      drawer: false,
-      items: [
-        {
-          icon: 'apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'bubble_chart',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
-    }
-  }
-}
+export default {}
 </script>
