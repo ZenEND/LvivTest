@@ -1,14 +1,14 @@
 <template>
   <v-container grid-list-lg>
     <v-layout justify-center row wrap>
-      <v-flex v-for="(item,i) in items" :key="i" py-4  xs8>
+      <v-flex v-for="(item,i) in items" :key="i" py-4  xs12 md8>
         <v-card>
           <v-card-title class="title">
             {{item.name}}
           </v-card-title>
           <v-card-text>
-            <v-layout>
-              <v-flex xs3>
+            <v-layout row wrap>
+              <v-flex xs12 md3>
                 <v-img src="https://picsum.photos/1366/728?image=1" aspect-ratio="1"/>
               </v-flex>
               <p  class="subheading">
@@ -17,7 +17,7 @@
             </v-layout>
           </v-card-text>
           <v-card-actions>
-            <v-btn icon color="primary" large absolute bottom right fab>
+            <v-btn icon color="primary" @click="addGood(i)"large absolute bottom right fab>
               <v-icon>
                 add_shopping_cart
               </v-icon>
@@ -54,7 +54,13 @@ export default {
           "name":"article 3",
           "label":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "price":45}
-        ]
+        ],
+        card:[],
+        addGood(i){
+          this.card.push(this.items[i]);
+          var serialObj = JSON.stringify(this.card)
+          localStorage.setItem("card",serialObj);
+        }
 
     }
   }

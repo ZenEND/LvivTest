@@ -6,13 +6,13 @@
       </v-toolbar-title>
       <v-spacer />
       <v-toolbar-items>
-        <v-btn flat>
+        <v-btn flat to="/">
           <v-icon>
             home
           </v-icon>
           Home Page
         </v-btn>
-        <v-btn flat>
+        <v-btn flat to="/card">
           <v-icon>delete</v-icon>
           Shopping Card
         </v-btn>
