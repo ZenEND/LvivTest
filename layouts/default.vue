@@ -1,8 +1,8 @@
 <template>
-  <v-app dark>
-    <v-toolbar dark color="primary">
+  <v-app>
+    <v-toolbar dark color="orange">
       <v-toolbar-title>
-        Интернет магазин
+        Market Plase
       </v-toolbar-title>
       <v-spacer />
       <v-toolbar-items>
@@ -10,11 +10,9 @@
           <v-icon>
             home
           </v-icon>
-          Home Page
         </v-btn>
-        <v-btn flat to="/card">
+        <v-btn flat to="/cart">
           <v-icon>add_shopping_cart</v-icon>
-          Shopping Card
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
