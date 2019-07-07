@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-lg>
     <v-layout justify-center row wrap>
-      <v-flex v-for="(item,i) in items" :key="i" xs12 my-2>
+      <v-flex v-for="(item,i) in newItems" :key="i" xs12 my-2>
         <v-card elevation="1" v-if="checkUniqle(item)">
           <v-card-title class = "title">{{item.name}}</v-card-title>
           <v-layout row wrap>
@@ -46,6 +46,7 @@
       <v-layout justify-end class="display-1" pa-3>
         Total Price : {{ showTotal() }}
       </v-layout>
+      <v-btn @click="someFunc()"></v-btn>
     </v-layout>
   </v-container>
 </template>
@@ -57,9 +58,16 @@ import VuetifyLogo from '~/components/VuetifyLogo.vue'
 export default {
   created(){
     this.cart = JSON.parse(localStorage.getItem("cart"));
+    this.newItems = [];
+    this.cart.forEach((cartItem)=>{
+      this.items.filter(item => {
+        item.id == cartItem.id ? this.newItems.push(item): null
+      })
+    })
   },
   data: () => ({
     cart:[],
+    newItems: [],
     items:[
       {
         "id":1,
@@ -83,6 +91,7 @@ export default {
     }),
   methods: {
     deleteItem(i){
+      this.newItems.splice(i,1);
       this.cart.splice(i,1);
       const serialObj = JSON.stringify(this.cart)
       localStorage.setItem("cart",serialObj);
@@ -94,7 +103,6 @@ export default {
         return false;
       }
     },
-
     addItem(item){
       this.cart.find((element, i ,arr)=> element.id == item.id ? element.count++ : null);
       let serialObj = JSON.stringify(this.cart)
