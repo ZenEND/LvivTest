@@ -53,7 +53,7 @@ import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
 export default {
   created(){
-    this.cart = JSON.parse(localStorage.getItem("cart")); 
+    this.cart = JSON.parse(localStorage.getItem("cart"));
   },
   data: () => ({
     items:[
@@ -80,15 +80,17 @@ export default {
   }),
   methods: {
     addItem(item){
-      if(this.cart!= null){
-        if(!this.cart.find((element, i ,arr)=> element.id == item.id ? (
-          element.count++
-        ): (false))){
-          this.cart.push({"id": item.id,"count":1});
-        }
-      }else{
-        this.cart = [({"id": item.id,"count":1})];
-      }
+      let arr
+      this.cart!= null ? (
+        arr = this.cart.find((element) => element.id==item.id),
+        (arr) ? (
+          arr.count++
+        ): (
+          this.cart.push({"id": item.id,"count":1})
+        )
+      ) : (
+        this.cart = [({"id": item.id,"count":1})]
+      )
       let serialObj = JSON.stringify(this.cart)
       localStorage.setItem("cart",serialObj);
     },
