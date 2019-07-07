@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-lg>
-    <v-layout justify-center row wrap>
+    <v-layout justify-center row wrap v-if="cart!=null">
       <v-flex v-for="(item,i) in newItems" :key="i" xs12 my-2>
         <v-card elevation="1">
           <v-card-title class = "title">{{item.name}}</v-card-title>
@@ -39,7 +39,9 @@
               <v-icon>delete</v-icon>
             </v-btn>
           </v-card-actions>
-
+          <v-snackbar v-model="snackbar" bottom>
+            Item added to the cart
+          </v-snackbar>
 
         </v-card>
       </v-flex>
@@ -65,6 +67,7 @@ export default {
     })
   },
   data: () => ({
+    snackbar : false,
     cart:[],
     newItems: [],
     items:[
@@ -96,6 +99,7 @@ export default {
       localStorage.setItem("cart",serialObj);
     },
     addItem(item){
+      this.snackbar=true;
       this.cart.find((element, i ,arr)=> element.id == item.id ? element.count++ : null);
       let serialObj = JSON.stringify(this.cart)
       localStorage.setItem("cart",serialObj);
@@ -119,9 +123,13 @@ export default {
           item.id == cartItem.id ? currentItems.push({"id":item.id, "totalPrice":item.price*cartItem.count}): null
         })
       })
-
-      let vallue = currentItems.map((item)=> item.totalPrice).reduce(reducer)
-      return vallue;
+      try{
+        let vallue = currentItems.map((item)=> item.totalPrice).reduce(reducer)
+        return vallue;
+      }
+      catch{
+        return 0;
+      }
     }
   }
 }
