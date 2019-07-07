@@ -2,7 +2,7 @@
   <v-container grid-list-lg>
     <v-layout justify-center row wrap>
       <v-flex v-for="(item,i) in newItems" :key="i" xs12 my-2>
-        <v-card elevation="1" v-if="checkUniqle(item)">
+        <v-card elevation="1">
           <v-card-title class = "title">{{item.name}}</v-card-title>
           <v-layout row wrap>
             <v-flex xs12 md4 px-3>
@@ -46,7 +46,6 @@
       <v-layout justify-end class="display-1" pa-3>
         Total Price : {{ showTotal() }}
       </v-layout>
-      <v-btn @click="someFunc()"></v-btn>
     </v-layout>
   </v-container>
 </template>
@@ -95,13 +94,6 @@ export default {
       this.cart.splice(i,1);
       const serialObj = JSON.stringify(this.cart)
       localStorage.setItem("cart",serialObj);
-    },
-    checkUniqle(item){
-      if(this.cart.find((element, i ,arr)=> element.id == item.id)){
-        return true;
-      } else {
-        return false;
-      }
     },
     addItem(item){
       this.cart.find((element, i ,arr)=> element.id == item.id ? element.count++ : null);
