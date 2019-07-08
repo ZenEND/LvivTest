@@ -39,10 +39,6 @@
               <v-icon>delete</v-icon>
             </v-btn>
           </v-card-actions>
-          <v-snackbar v-model="snackbar" bottom>
-            Item added to the cart
-          </v-snackbar>
-
         </v-card>
       </v-flex>
     </v-layout>
@@ -67,7 +63,6 @@ export default {
     })
   },
   data: () => ({
-    snackbar : false,
     cart:[],
     newItems: [],
     items:[
@@ -99,7 +94,6 @@ export default {
       localStorage.setItem("cart",serialObj);
     },
     addItem(item){
-      this.snackbar=true;
       this.cart.find((element, i ,arr)=> element.id == item.id ? element.count++ : null);
       let serialObj = JSON.stringify(this.cart)
       localStorage.setItem("cart",serialObj);

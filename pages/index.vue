@@ -40,6 +40,9 @@
               <h3 class="display-1 font-weight-light orange--text mb-2"> {{item.name}}</h3>
               <div class="font-weight-light title mb-2">{{item.label}}</div>
             </v-card-text>
+            <v-snackbar color="green" :timeout="600" v-model="snackbar" bottom>
+              Item added to the cart
+            </v-snackbar>
           </v-card>
         </v-hover>
       </v-flex>
@@ -53,9 +56,10 @@ import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
 export default {
   created(){
-    this.cart = [] //JSON.parse(localStorage.getItem("cart"));
+    this.cart = JSON.parse(localStorage.getItem("cart"));
   },
   data: () => ({
+    snackbar : false,
     items:[
       {
         "id":1,
@@ -80,6 +84,7 @@ export default {
   }),
   methods: {
     addItem(item){
+      this.snackbar=true;
       let arr
       this.cart!= null ? (
         arr = this.cart.find((element) => element.id==item.id),
