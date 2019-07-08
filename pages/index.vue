@@ -53,7 +53,7 @@ import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
 export default {
   created(){
-    this.cart = JSON.parse(localStorage.getItem("cart"));
+    this.cart = [] //JSON.parse(localStorage.getItem("cart"));
   },
   data: () => ({
     items:[

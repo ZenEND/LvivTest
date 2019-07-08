@@ -45,9 +45,9 @@
 
         </v-card>
       </v-flex>
-      <v-layout justify-end class="display-1" pa-3>
-        Total Price : {{ showTotal() }}
-      </v-layout>
+    </v-layout>
+    <v-layout justify-end class="display-1" pa-3>
+      Total Price : {{ showTotal() }}
     </v-layout>
   </v-container>
 </template>
